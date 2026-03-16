@@ -6,4 +6,4 @@ import { CommonController } from './common.controller';
   controllers: [CommonController],
   providers: [CommonService],
 })
-export class CommonModule {}
+export class CommonModule { }
