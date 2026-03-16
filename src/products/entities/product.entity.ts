@@ -1,9 +1,10 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { IsOptional } from 'class-validator';
+import { ProductImage } from ".";
 
 
 
-@Entity()
+@Entity({ name: 'products' })
 export class Product {
 
     @PrimaryGeneratedColumn('uuid')
@@ -41,7 +42,15 @@ export class Product {
     })
     sizes: string[]
 
-    // todo: tags, images
+    // images
+    @OneToMany(
+        () => ProductImage,
+        (productImage) => productImage.product,
+        { cascade: true, eager: true }
+    )
+    images?: ProductImage[];
+
+
 
     @Column('text', {
         array: true,
