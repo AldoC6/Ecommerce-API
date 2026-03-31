@@ -1,6 +1,7 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { IsOptional } from 'class-validator';
 import { ProductImage } from ".";
+import { User } from 'src/auth/entities/user.entity';
 
 
 
@@ -61,6 +62,14 @@ export class Product {
 
     @Column('text')
     gender: string
+
+
+    @ManyToOne(
+        () => User,
+        (user) => user.product,
+        { eager: true }
+    )
+    user: User
 
 
 
