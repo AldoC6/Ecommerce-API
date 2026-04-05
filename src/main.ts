@@ -25,7 +25,7 @@ async function bootstrap() {
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
 
-  await app.listen(process.env.PORT);
-  logger.log(`Backend corriendo en el puerto ${process.env.PORT}`)
+  await app.listen(process.env.PORT || 3000);
+  logger.log(`Backend corriendo en el puerto ${process.env.PORT || 3000}`)
 }
 bootstrap();
